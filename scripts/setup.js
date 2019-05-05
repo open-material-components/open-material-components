@@ -15,6 +15,7 @@ const packages = [
   { name: 'checkbox', type: 'default' },
   { name: 'checkbox-group', type: 'withFieldMixin' },
   { name: 'form', type: 'default' },
+  { name: 'fieldset', type: 'default' },
   { name: 'icon', type: 'default' },
   { name: 'input', type: 'withFieldMixin' },
   { name: 'input-amount', type: 'withFieldMixin' },
@@ -58,7 +59,7 @@ const templatePackageJson = `
   ],
   "dependencies": {
     "@lion/core": "^0.1.3",
-    "@lion/<%= sourceTagName %>": "^0.1.3"
+    "@lion/<%= name %>": "^0.1.3"
   },
   "devDependencies": {
     "@open-wc/demoing-storybook": "^0.2.0",
@@ -69,7 +70,7 @@ const templatePackageJson = `
 
 const templateDefaultClass = `
 import { css, html } from '@lion/core';
-import { <%= sourceClassName %> } from '@lion/<%= sourceTagName %>';
+import { <%= sourceClassName %> } from '@lion/<%= name %>';
 
 export class <%= targetClassName %> extends <%= sourceClassName %> {
   static get styles() {
@@ -87,8 +88,8 @@ export class <%= targetClassName %> extends <%= sourceClassName %> {
 
 const templateWithFieldMixinClass = `
 import { css, html } from '@lion/core';
-import { <%= sourceClassName %> } from '@lion/<%= sourceTagName %>';
-import { <%= prefixCamelCase %>FieldMixin } from '<%= scope %>/field-mixin/<%= prefixCamelCase %>FieldMixin.js';
+import { <%= sourceClassName %> } from '@lion/<%= name %>';
+import { <%= prefixCamelCase %>FieldMixin } from '<%= scope %>/field-mixin';
 
 export class <%= targetClassName %> extends <%= prefixCamelCase %>FieldMixin(<%= sourceClassName %>) {
   static get styles() {
@@ -117,7 +118,7 @@ customElements.define('<%= targetTagName %>', <%= targetClassName %>);
 const templateStorybookIndex = `
 import { storiesOf, html } from '@open-wc/demoing-storybook';
 
-import '../omc-button.js';
+import '../<%= targetTagName %>.js';
 
 storiesOf('<%= targetClassName %>|Material Extras', module).add(
   'Overview',
@@ -129,7 +130,7 @@ storiesOf('<%= targetClassName %>|Material Extras', module).add(
 
 const templateFieldMixin = `
 import { dedupeMixin, css } from '@lion/core';
-import '<%= scope %>/<%= prefix %>-validation-feedback/<%= prefix %>-validation-feedback.js';
+import '<%= scope %>/validation-feedback/<%= prefix %>-validation-feedback.js';
 
 export const <%= prefixCamelCase %>FieldMixin = dedupeMixin(
   superclass =>
@@ -188,8 +189,6 @@ packages.forEach(pkg => {
     targetClassName,
     ...userData,
   };
-
-  // console.log(currentData);
 
   writeFileToPathOnDisk(
     `./packages/${pkg.name}/package.json`,

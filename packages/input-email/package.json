@@ -1,0 +1,35 @@
+{
+  "name": "@omc/input-email",
+  "version": "0.0.0",
+  "description": "This is a default description",
+  "author": "Open Material Components",
+  "homepage": "https://github.com/open-material-components/open-material-components/",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/open-material-components/open-material-components.git",
+    "directory": "packages/button"
+  },
+  "scripts": {
+    "prepublishOnly": "../../scripts/insert-header.js"
+  },
+  "main": "index.js",
+  "module": "index.js",
+  "files": [
+    "src",
+    "stories",
+    "test",
+    "*.js"
+  ],
+  "dependencies": {
+    "@lion/core": "^0.1.3",
+    "@lion/input-email": "^0.1.3"
+  },
+  "devDependencies": {
+    "@open-wc/demoing-storybook": "^0.2.0",
+    "@open-wc/testing": "^0.11.1"
+  }
+}
