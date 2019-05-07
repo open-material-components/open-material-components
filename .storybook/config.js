@@ -7,5 +7,5 @@ import '@storybook/addon-console';
 // }
 
 configure(() => {
-  return require('../packages/input/stories/index.stories.js');
+  return require('../packages/button/stories/index.stories.js');
 }, module);

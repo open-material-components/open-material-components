@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
+const setupData = require('./setupData.js');
 
 const userData = {
   scope: '@omc',
@@ -175,6 +176,20 @@ function getClassName(tagName) {
     .reduce((previous, part) => previous + part.charAt(0).toUpperCase() + part.slice(1), '');
 }
 
+function generateIndexJs(currentData) {
+  const output = [];
+  output.push(processTemplate(templateIndexJs, currentData));
+  const pkgData = setupData.find(item => item.name === currentData.name);
+  if (pkgData && pkgData.exports && pkgData.exports.length > 0) {
+    let otherExports = 'export { ';
+    otherExports += pkgData.exports.join(', ');
+    otherExports += `} from '@lion/${currentData.name}';`;
+    output.push(otherExports);
+  }
+
+  return `${output.join('\n')}\n`;
+}
+
 packages.forEach(pkg => {
   const sourceTagName = `lion-${pkg.name}`;
   const targetTagName = `${userData.prefix}-${pkg.name}`;
@@ -194,10 +209,7 @@ packages.forEach(pkg => {
     `./packages/${pkg.name}/package.json`,
     processTemplate(templatePackageJson, currentData),
   );
-  writeFileToPathOnDisk(
-    `./packages/${pkg.name}/index.js`,
-    processTemplate(templateIndexJs, currentData),
-  );
+  writeFileToPathOnDisk(`./packages/${pkg.name}/index.js`, generateIndexJs(currentData));
 
   if (pkg.type === 'default' || pkg.type === 'withFieldMixin') {
     writeFileToPathOnDisk(
