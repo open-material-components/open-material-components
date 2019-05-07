@@ -5,6 +5,6 @@ import '../omc-input.js';
 storiesOf('OmcInput|Material Extras', module).add(
   'Overview',
   () => html`
-    <omc-input></omc-input>
+    <omc-input label="First Name"></omc-input>
   `,
 );
