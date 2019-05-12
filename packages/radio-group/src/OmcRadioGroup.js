@@ -1,8 +1,7 @@
-import { css, html } from '@lion/core';
+import { css } from '@lion/core';
 import { LionRadioGroup } from '@lion/radio-group';
-import { OmcFieldMixin } from '@omc/field-mixin';
 
-export class OmcRadioGroup extends OmcFieldMixin(LionRadioGroup) {
+export class OmcRadioGroup extends LionRadioGroup {
   static get styles() {
     return [
       super.styles,

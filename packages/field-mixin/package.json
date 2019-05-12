@@ -25,7 +25,8 @@
     "*.js"
   ],
   "dependencies": {
-    "@lion/core": "^0.1.3"
+    "@lion/core": "^0.1.3",
+    "@omc/validation-feedback": "^0.0.0"
   },
   "devDependencies": {
     "@open-wc/demoing-storybook": "^0.2.0",
