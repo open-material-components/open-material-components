@@ -2,6 +2,21 @@ import { css, html } from '@lion/core';
 import { LionInput } from '@lion/input';
 import { OmcFieldMixin } from '@omc/field-mixin';
 
+/**
+ * TODO:
+ *
+ * placeholder color
+ * exact placement of label
+ * outlines input
+ * leading icon
+ * trailing icon
+ * help message
+ * error message
+ * background color should be darker
+ *
+ * dense text fields
+ */
+
 const constants = css`
   :host {
     --primary-color: #6200ee;
@@ -27,45 +42,23 @@ export class OmcInput extends OmcFieldMixin(LionInput) {
       css`
         :host {
           width: 280px;
-          height: 56px;
-          background-color: lightgray;
+          /* TODO: how high? */
+          min-height: 100px;
           position: relative;
         }
 
-        :host::after {
-          display: block;
-          content: '';
-          bottom: 0;
-          height: 2px;
-          width: 100%;
-          transform: scale(0);
-          transition: transform 250ms;
-          background-color: var(--primary-color);
-        }
-
-        :host(.state-focused)::after {
-          transform: scale(1);
-        }
-
-        .form-field__label {
-          position: absolute;
-          display: flex;
-          align-items: center;
-          padding: 0 12px;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-        }
-
+        /* input */
         .input-group {
-          height: 100%;
+          height: 55px;
+          /* TODO: Material color */
+          background-color: #eee;
+          position: relative;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          border-bottom: 1px solid rgba(0,0,0,.42);
         }
 
         .input-group__container {
-          height: 100%;
-        }
-
-        .input-group__container > .input-group__input {
           height: 100%;
         }
 
@@ -74,21 +67,72 @@ export class OmcInput extends OmcFieldMixin(LionInput) {
           height: 100%;
           width: 100%;
           border: none;
-          padding: 0 12px;
           outline: none;
-          /* TODO */
-          background-color: lightgray;
+          padding: 0 12px;
+          background-color: transparent;
         }
 
-        :host ::slotted(label) {
-          transition: transform 250ms ease-in-out;
-          /* TODO */
+        /* input border */
+        .input-group::after {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          bottom: -1px;
+          content: '';
+          height: 2px;
+          width: 100%;
+          transform: scale(0);
+          transition: transform 250ms;
+          background-color: var(--primary-color);
+        }
+
+        :host(.state-focused) .input-group::after,
+        :host(.state-error) .input-group::after {
+          transform: scale(1);
+        }
+
+        :host(.state-error) .input-group::after {
+          /* TODO: Material color */
+          background-color: #b00020;
+        }
+
+        /* label */
+        .form-field__label {
+          position: absolute;
+          z-index: 1;
+          top: 18px;
+          left: 12px;
+          pointer-events: none;
           color: gray;
+          transition: transform 150ms ease-in-out;
+          transform: translateY(0%) scale(1);
+          transform-origin: top left;
         }
 
-        :host(.state-focused) ::slotted(label) {
-          transform: translateY(-90%) translateX(-15%) scale(0.70);
+        :host(.state-focused) .form-field__label,
+        :host(.state-filled) .form-field__label {
+          transform: translateY(-70%) scale(0.75);
+        }
+
+        :host(.state-focused) .form-field__label {
           color: var(--primary-color);
+        }
+
+        :host(.state-error) .form-field__label {
+          /* TODO: Material color */
+          color: #b00020;
+        }
+
+        /* messages */
+        .form-field__feedback {
+          /* TODO */
+          font-size: 12px;
+          padding: 4px 12px;
+        }
+
+        :host(.state-error) .form-field__feedback {
+          /* TODO: Material color */
+          color: #b00020;
         }
       `,
     ];
