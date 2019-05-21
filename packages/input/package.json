@@ -26,7 +26,8 @@
   ],
   "dependencies": {
     "@lion/core": "^0.1.3",
-    "@lion/input": "^0.1.3"
+    "@lion/input": "^0.1.5",
+    "@omc/field-mixin": "^0.0.0"
   },
   "devDependencies": {
     "@open-wc/demoing-storybook": "^0.2.0",

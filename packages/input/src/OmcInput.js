@@ -1,4 +1,4 @@
-import { css, html } from '@lion/core';
+import { css } from '@lion/core';
 import { LionInput } from '@lion/input';
 import { OmcFieldMixin } from '@omc/field-mixin';
 
