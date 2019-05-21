@@ -46,7 +46,7 @@
     "format": "npm run format:eslint && npm run format:prettier",
     "format:eslint": "eslint --ext .js,.html . --fix",
     "format:prettier": "prettier '**/*.js' --write",
-    "upgrade-lion": "node ./scripts/upgrade.js"
+    "upgrade:lion": "node ./scripts/upgrade.js"
   },
   "lint-staged": {
     "*": [

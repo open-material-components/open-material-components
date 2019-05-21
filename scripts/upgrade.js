@@ -55,6 +55,7 @@ async function getTargetVersion(name) {
   const result = await anExec(`yarn info ${name} --versions --silent`);
   if (result) {
     const matches = result.match(/version:.*\s.*'(.*)'/m);
+    console.log(`${name}: ${matches[1]}`);
     return matches[1];
   }
   return '';
