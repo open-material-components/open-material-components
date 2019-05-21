@@ -25,7 +25,10 @@
     "*.js"
   ],
   "dependencies": {
-    "@lion/core": "^0.1.6"
+    "@lion/core": "^0.1.6",
+    "@lion/localize": "^0.3.2",
+    "@omc/icon": "^0.0.0",
+    "@omc/icons": "^0.0.0"
   },
   "devDependencies": {
     "@open-wc/demoing-storybook": "^0.2.0",

@@ -1,7 +1,7 @@
 import { LitElement, DomHelpersMixin, css, html } from '@lion/core';
 import { localize, LocalizeMixin } from '@lion/localize';
 
-import {} from '@omc/icons';
+import { checkCircle, error, info, warning } from '@omc/icons';
 
 import '@omc/icon/omc-icon.js';
 
@@ -24,10 +24,10 @@ export class OmcValidationFeedback extends LocalizeMixin(DomHelpersMixin(LitElem
   constructor() {
     super();
     this._iconNamesMap = {
-      info: information,
+      info,
       warning,
       error,
-      success,
+      success: checkCircle,
     };
   }
 

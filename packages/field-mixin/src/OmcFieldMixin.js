@@ -35,13 +35,9 @@ export const OmcFieldMixin = dedupeMixin(
           constants,
           inputResets,
           css`
-            :host {
-              width: 280px;
+            .input-group {
               height: 56px;
               position: relative;
-            }
-
-            .input-group {
               display: flex;
             }
 
@@ -66,8 +62,6 @@ export const OmcFieldMixin = dedupeMixin(
               display: flex;
               align-items: center;
               padding: 0 12px;
-              width: 100%;
-              height: 100%;
               pointer-events: none;
             }
 
@@ -98,14 +92,14 @@ export const OmcFieldMixin = dedupeMixin(
               background-color: ${backgroundColor};
             }
 
-            :host ::slotted(label) {
+            .form-field__label {
               transition: transform 250ms ease-in-out;
               /* TODO */
               color: gray;
             }
 
-            :host(.state-filled) ::slotted(label),
-            :host(.state-focused) ::slotted(label) {
+            :host(.state-filled) .form-field__label,
+            :host(.state-focused) .form-field__label {
               transform: translateY(-90%) translateX(-15%) scale(0.7);
               color: var(--primary-color);
             }
@@ -113,10 +107,22 @@ export const OmcFieldMixin = dedupeMixin(
         ];
       }
 
+      inputGroupTemplate() {
+        return html`
+          <div class="input-group">
+            ${this.labelTemplate()} ${this.inputGroupBeforeTemplate()}
+            <div class="input-group__container">
+              ${this.inputGroupPrefixTemplate()} ${this.inputGroupInputTemplate()}
+              ${this.inputGroupSuffixTemplate()}
+            </div>
+            ${this.inputGroupAfterTemplate()}
+          </div>
+        `;
+      }
+
       render() {
         return html`
-          ${this.labelTemplate()} ${this.inputGroupTemplate()} ${this.helpTextTemplate()}
-          ${this.feedbackTemplate()}
+          ${this.inputGroupTemplate()} ${this.helpTextTemplate()} ${this.feedbackTemplate()}
         `;
       }
     },
