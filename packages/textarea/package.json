@@ -26,7 +26,8 @@
   ],
   "dependencies": {
     "@lion/core": "^0.1.6",
-    "@lion/textarea": "^0.1.11"
+    "@lion/textarea": "^0.1.11",
+    "@omc/field-mixin": "^0.0.0"
   },
   "devDependencies": {
     "@open-wc/demoing-storybook": "^0.2.0",

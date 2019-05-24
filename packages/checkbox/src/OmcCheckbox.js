@@ -6,6 +6,10 @@ export class OmcCheckbox extends LionCheckbox {
     return [
       super.styles,
       css`
+        :host {
+          position: relative;
+        }
+
         .choice-field__graphic-container {
           display: block;
           box-sizing: border-box;
@@ -30,8 +34,15 @@ export class OmcCheckbox extends LionCheckbox {
           stroke-dasharray: 29.7833385;
         }
 
-        slot[name='input'] {
-          display: none;
+        :host ::slotted([slot='input']) {
+          position: absolute;
+          top: 0;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          box-sizing: content-box;
+          margin: 0;
+          cursor: pointer;
         }
 
         /* Checked */
