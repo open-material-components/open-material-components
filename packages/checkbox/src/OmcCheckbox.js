@@ -18,6 +18,7 @@ export class OmcCheckbox extends LionCheckbox {
           border-radius: 2px;
           border: 2px solid rgba(0, 0, 0, 0.54);
           margin-right: 5px;
+          pointer-events: none;
         }
 
         .checkmark {
